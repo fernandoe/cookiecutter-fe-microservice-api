@@ -1,0 +1,8 @@
+{
+    "service_name": "Service",
+    "project_name": "FE {{ cookiecutter.service_name }} API",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}",
+    "full_name": "Fernando Espíndola",
+    "email": "fer.esp@gmail.com",
+    "version": "0.1.0"
+}

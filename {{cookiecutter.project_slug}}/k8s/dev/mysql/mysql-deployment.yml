@@ -16,6 +16,6 @@ spec:
           - containerPort: 3306
         env:
           - name: MYSQL_DATABASE
-            value: conta
+            value: {{cookiecutter.service_name}}
           - name: MYSQL_ROOT_PASSWORD
             value: password

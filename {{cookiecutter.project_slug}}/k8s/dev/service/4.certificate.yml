@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: {{cookiecutter.service_name}}-api-dev-fernandoe-com
+spec:
+  secretName: {{cookiecutter.service_name}}-api-dev-fernandoe-com-tls
+  issuerRef:
+    name: issuer-letsencrypt
+  commonName: {{cookiecutter.service_name}}-api.dev.fernandoe.com
+  dnsNames:
+    - {{cookiecutter.service_name}}-api.dev.fernandoe.com
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - {{cookiecutter.service_name}}-api.dev.fernandoe.com

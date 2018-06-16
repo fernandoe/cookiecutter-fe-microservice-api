@@ -1,4 +1,4 @@
-TRAVIS_REPO_SLUG ?= fernandoe/{{cookiecutter.repo_name}}
+TRAVIS_REPO_SLUG ?= fernandoe/{{cookiecutter.project_slug}}
 TAG ?= local
 
 build:
