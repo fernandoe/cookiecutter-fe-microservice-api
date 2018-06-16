@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{cookiecutter.service_name}}-api
+  name: {{cookiecutter.service_name_lower}}-api
 spec:
   type: ClusterIP
   ports:
   - port: 80
     targetPort: 8000
   selector:
-    app: {{cookiecutter.service_name}}-api
+    app: {{cookiecutter.service_name_lower}}-api

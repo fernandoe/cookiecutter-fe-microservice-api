@@ -1,31 +1,31 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: {{cookiecutter.service_name}}-api
+  name: {{cookiecutter.service_name_lower}}-api
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{cookiecutter.service_name}}-api
-        service: {{cookiecutter.service_name}}-api
+        app: {{cookiecutter.service_name_lower}}-api
+        service: {{cookiecutter.service_name_lower}}-api
     spec:
       initContainers:
       - name: check-db-ready
         image: mysql:5.7.21
         command: ["sh", "-c", "until mysql -hmysql -uroot -ppassword -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = \"root\")'; do echo waiting for database; sleep 2; done;"]
       - name: run-migration
-        image: fernandoe/fe-{{cookiecutter.service_name}}-api:0.0.1
+        image: fernandoe/fe-{{cookiecutter.service_name_lower}}-api:0.0.1
         imagePullPolicy: Always
         command: ["python", "manage.py", "migrate"]
         env:
           - name: DJANGO_SETTINGS_MODULE
             value: 'server.settings.docker'
           - name: DATABASE_URL
-            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name}}
+            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name_lower}}
       containers:
-      - name: {{cookiecutter.service_name}}-api
-        image: fernandoe/fe-{{cookiecutter.service_name}}-api:0.0.1
+      - name: {{cookiecutter.service_name_lower}}-api
+        image: fernandoe/fe-{{cookiecutter.service_name_lower}}-api:0.0.1
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
@@ -33,4 +33,4 @@ spec:
           - name: DJANGO_SETTINGS_MODULE
             value: 'server.settings.docker'
           - name: DATABASE_URL
-            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name}}
+            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name_lower}}

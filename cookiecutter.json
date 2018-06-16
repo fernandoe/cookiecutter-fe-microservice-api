@@ -1,5 +1,6 @@
 {
     "service_name": "Service",
+    "service_name_lower": "{{ cookiecutter.service_name.lower() }}",
     "project_name": "FE {{ cookiecutter.service_name }} API",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}",
     "full_name": "Fernando Espíndola",
