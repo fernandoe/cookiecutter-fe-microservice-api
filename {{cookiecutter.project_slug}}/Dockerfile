@@ -1,4 +1,5 @@
 FROM fernandoe/docker-python:3.6.5-alpine
+LABEL maintainer="Fernando Espíndola <fer.esp@gmail.com>"
 
 ADD ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
