@@ -13,13 +13,13 @@ if ! ./kubectl get namespace "${NAMESPACE}"; then
 fi
 
 # Change version
-sed -ie 's/0.0.1/'"${TAG}"'/g' k8s/dev/ortopedica-api/3.ortopedica-api-deployment.yml
+sed -ie 's/0.0.1/'"${TAG}"'/g' k8s/dev/service/2.deployment.yml
 
 # Change domain name
-sed -ie 's/ortopedica-api\.dev\.fernandoe\.com/'"${NAMESPACE}"'.dev.fernandoe.com/g' k8s/dev/ortopedica-api/5.ortopedica-api-certificate.yml
-sed -ie 's/ortopedica-api\.dev\.fernandoe\.com/'"${NAMESPACE}"'.dev.fernandoe.com/g' k8s/dev/ortopedica-api/6.ortopedica-api-ingress.yml
+sed -ie 's/{{cookiecutter.k8s_service_name}}\.dev\.fernandoe\.com/'"${NAMESPACE}"'.dev.fernandoe.com/g' k8s/dev/service/4.certificate.yml
+sed -ie 's/{{cookiecutter.k8s_service_name}}\.dev\.fernandoe\.com/'"${NAMESPACE}"'.dev.fernandoe.com/g' k8s/dev/service/5.ingress.yml
 
 ./kubectl apply --recursive -f ./k8s/dev/ -n ${NAMESPACE}
 
-./kubectl scale -n ${NAMESPACE} --replicas=0 deploy/ortopedica-api
-./kubectl scale -n ${NAMESPACE} --replicas=1 deploy/ortopedica-api
+./kubectl scale -n ${NAMESPACE} --replicas=0 deploy/{{cookiecutter.k8s_service_name}}
+./kubectl scale -n ${NAMESPACE} --replicas=1 deploy/{{cookiecutter.k8s_service_name}}

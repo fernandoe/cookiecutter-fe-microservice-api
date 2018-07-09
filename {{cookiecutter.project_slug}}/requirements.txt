@@ -2,11 +2,12 @@
 -e git+https://github.com/fernandoe/django-fe-jwt.git@release/0.0.1#egg=django_fe_jwt
 coveralls
 dj-database-url
+Django
 django-cors-headers
 django-extensions
-Django
-djangorestframework-jwt
+django-fe-version
 djangorestframework
+djangorestframework-jwt
 factory-boy
 mysqlclient
 pre-commit

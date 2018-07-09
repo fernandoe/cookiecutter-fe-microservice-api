@@ -1,4 +1,4 @@
-# {{cookiecutter.project_slug}}
+# [{{cookiecutter.project_slug}}]({{cookiecutter.website}})
 
 - https://requires.io
 - https://travis-ci.org
