@@ -6,13 +6,13 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: {{cookiecutter.k8s_service_name}}.dev.fernandoe.com
+    - host: {{ cookiecutter.k8s_service_name }}.dev.fernandoe.com
       http:
         paths:
           - backend:
-              serviceName: {{cookiecutter.k8s_service_name}}
+              serviceName: {{ cookiecutter.k8s_service_name }}
               servicePort: 80
   tls:
     - hosts:
-        - {{cookiecutter.k8s_service_name}}.dev.fernandoe.com
-      secretName: {{cookiecutter.k8s_service_name}}-dev-fernandoe-com-tls
+        - {{ cookiecutter.k8s_service_name }}.dev.fernandoe.com
+      secretName: {{ cookiecutter.k8s_service_name }}-dev-fernandoe-com-tls

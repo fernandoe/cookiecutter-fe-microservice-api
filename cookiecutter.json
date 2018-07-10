@@ -5,6 +5,7 @@
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('_', '-') }}",
     "full_name": "Fernando Espíndola",
     "email": "fer.esp@gmail.com",
-    "version": "0.1.0",
-    "website": "https://github.com/fernandoe/api-example"
+    "version": "0.0.1",
+    "website": "https://github.com/fernandoe/fe-{{ cookiecutter.service_name_lower }}-api",
+    "k8s_service_name": "api-{{ cookiecutter.service_name_lower }}"
 }

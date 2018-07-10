@@ -1,31 +1,31 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: {{cookiecutter.service_name_lower}}-api
+  name: {{ cookiecutter.k8s_service_name }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{cookiecutter.service_name_lower}}-api
-        service: {{cookiecutter.service_name_lower}}-api
+        app: {{ cookiecutter.k8s_service_name }}
+        service: {{ cookiecutter.k8s_service_name }}
     spec:
       initContainers:
       - name: check-db-ready
         image: mysql:5.7.21
         command: ["sh", "-c", "until mysql -hmysql -uroot -ppassword -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = \"root\")'; do echo waiting for database; sleep 2; done;"]
       - name: run-migration
-        image: fernandoe/fe-{{cookiecutter.service_name_lower}}-api:0.0.1
+        image: fernandoe/fe-{{ cookiecutter.service_name_lower }}-api:0.0.1
         imagePullPolicy: Always
         command: ["python", "manage.py", "migrate"]
         env:
           - name: DJANGO_SETTINGS_MODULE
             value: 'server.settings.docker'
           - name: DATABASE_URL
-            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name_lower}}
+            value: mysql://root:password@mysql:3306/{{ cookiecutter.service_name_lower }}
       containers:
-      - name: {{cookiecutter.service_name_lower}}-api
-        image: fernandoe/fe-{{cookiecutter.service_name_lower}}-api:0.0.1
+      - name: {{ cookiecutter.k8s_service_name }}
+        image: fernandoe/fe-{{ cookiecutter.service_name_lower }}-api:0.0.1
         imagePullPolicy: Always
         ports:
           - containerPort: 8000
@@ -33,6 +33,6 @@ spec:
           - name: DJANGO_SETTINGS_MODULE
             value: 'server.settings.docker'
           - name: DATABASE_URL
-            value: mysql://root:password@mysql:3306/{{cookiecutter.service_name_lower}}
+            value: mysql://root:password@mysql:3306/{{ cookiecutter.service_name_lower }}
           - name: VERSION
             value: 0.0.1
